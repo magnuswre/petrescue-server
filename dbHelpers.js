@@ -1,8 +1,9 @@
 // den här filen (skapa en funktion) används för att connecta med databasen när det kommer en request. Och spara den här.
+//const knex = require("knex"); // importera knex så att det går att använda 
+//const config = require("./knexfile"); //vilken mapp och databas som ska användas
+//const db = knex(config.development)   //in knexfile.js -> development. Vi spara den i variable och refererar till min databas
 
-const knex = require("knex"); // importera knex så att det går att använda 
-const config = require("./knexfile"); //vilken mapp och databas som ska användas
-const db = knex(config.development)   //in knexfile.js -> development. Vi sparaden i variable och refererar till min databas
+const db = require('./dbConfig'); // den här raden erstätter koden ovan. Här bestäms med hjälp av dbConfig om det är om det är dev eller producion mode. 
 
 function getAllUsers(){
     return db("users")
