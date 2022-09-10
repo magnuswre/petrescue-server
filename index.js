@@ -6,7 +6,8 @@ const app = express();
 const port = process.env.PORT || 8000; // letar efter en port i .env. Annars använd 8000
 const bodyParser = require("body-parser") //importar funktioner, hjälper backend vilken typ av jsondata som kommer från frontend 34:10 i Backend 3 MIMO LIVE   
 app.use(bodyParser.json()) //make it understand what json "do"
-
+const cors = require('cors');
+app.use(cors({origin:'*'}))
 /*
 axios.get("")
 // IMPORT ROUTERS 
