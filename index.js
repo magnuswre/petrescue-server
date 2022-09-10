@@ -8,13 +8,12 @@ const bodyParser = require("body-parser") //importar funktioner, hjälper backen
 app.use(bodyParser.json()) //make it understand what json "do"
 const cors = require('cors');
 app.use(cors({origin:'*'}))
-/*
-axios.get("")
+
 // IMPORT ROUTERS 
 const usersRouter = require("./routes/user-routes")
 // ACTIVE (USE) ROUTES
 app.use("/", usersRouter)
-*/
+
 //WELCOME PAGE
 app.get("/", (req, res)=>{ // endpoint med bara forward slash / är hemsidan. 
     res.status(200).json({message:"Welcome to the server"}) // med -> res <- så skickas det tillbaka till frontend
