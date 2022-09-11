@@ -10,8 +10,11 @@ function getAllUsers(){
 }
 
 async function addUser(user){ //Här skapas en ny user
-    await db("users").insert(user) //insert är insert new data. Await väntar. async. jobbar ihop. Är vikigt när man skapar//något nytt ska den vänta på andra funktioner  
-   return db("users").where({username:user.username})   //refererar till en specefik user i databasen. username är unikt                                 
+    //await db("users").insert(user) //insert är insert new data. Await väntar. async. jobbar ihop. Är vikigt när man skapar//något nytt ska den vänta på andra funktioner  
+   //return db("users").where({username:user.username})   //refererar till en specefik user i databasen. username är unikt                                 
+    
+   return await db('users').insert(user,['id', 'username']) // Den här koden "ersätter" de två raderna ovan detta. Detta är för postgresql vill ha informationen    
+
 }
 
 function findUserByUsername(username){
