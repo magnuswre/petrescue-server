@@ -9,6 +9,9 @@ app.use(bodyParser.json()) //make it understand what json "do"
 const cors = require('cors');
 app.use(cors({origin:'*'}))
 
+
+
+
 // IMPORT ROUTERS 
 const usersRouter = require("./routes/user-routes")
 // ACTIVE (USE) ROUTES
