@@ -27,6 +27,23 @@ router.get("/users/:username", (req,res)=>{ // kolla colon.//informationen finns
 
 
 }) 
+
+//????????//-----------------------------------GET A USER BY ID----------------//
+router.get("/users/:id", (req,res)=>{ // kolla colon.//informationen finns i url. som är :id där finns förvarade
+    
+    //const id = req.params.username // kolla params! {destructuring}
+    const {id} = req.params // samma som ovan. men mer professionellt. Om något är stored/förvaras i ett objekt.
+                                  // tänk baklänges man går till objektet sedan sparar man det genom att skapa en varibeln i {NN} som sedan används      
+
+    Travels.findUserByUsername(id)
+    .then(user=>{
+        res.status(200).json(user)
+    })
+    .catch(error=>res.status(500).json(error)) 
+
+
+}) 
+
 // ------------------CREATE A NEW USER----------------------------/
 //  ------- Om vi vill få information från användaren skapar vi en route/endpoint/url. I detta fall /users/register. 
 // Det kan heta vad som helst men ska passa med syftet. I detta fall skapa/registerar en användare 
