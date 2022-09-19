@@ -44,7 +44,7 @@ function findUserbyId(id){
 
 async function addAnimal(newAnimal){
     await db('animal')
-    .where({user_id:newAnimal.user.id})
+    .where({user_id:newAnimal.user_id})
     .insert(newAnimal)
 }
 
