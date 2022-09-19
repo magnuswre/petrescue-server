@@ -5,6 +5,7 @@
 
 const db = require('./dbConfig'); // den här raden erstätter koden ovan. Här bestäms med hjälp av dbConfig om det är om det är dev eller producion mode. 
 
+
 function getAllUsers(){
     return db("users")
 }

@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const Travels = require("../dbHelpers")
+const usersAndAnimal = require("../dbHelpers")
 const bcrypt = require("bcryptjs") //vi laddar ner och använder ett hashing-bibliotek som kallas bcrypt.
 
 
 // --------------- GET ALL USERS---------------------------//
 router.get("/users",(req, res)=>{ 
-    Travels.getAllUsers() 
+    usersAndAnimal.getAllUsers() 
     .then(users=>{ //users kan heta vad som helst
         res.status(200).json(users) //det du lägger i (users) skickas till frontend 
     })
@@ -19,7 +19,7 @@ router.get("/users/:username", (req,res)=>{ // kolla colon.//informationen finns
     const {username} = req.params // samma som ovan. men mer professionellt. Om något är stored/förvaras i ett objekt.
                                   // tänk baklänges man går till objektet sedan sparar man det genom att skapa en varibeln i {NN} som sedan används      
 
-    Travels.findUserByUsername(username)
+    usersAndAnimal.findUserByUsername(username)
     .then(user=>{
         res.status(200).json(user)
     })
@@ -35,7 +35,7 @@ router.get("/users/:id", (req,res)=>{ // kolla colon.//informationen finns i url
     const {id} = req.params // samma som ovan. men mer professionellt. Om något är stored/förvaras i ett objekt.
                                   // tänk baklänges man går till objektet sedan sparar man det genom att skapa en varibeln i {NN} som sedan används      
 
-    Travels.findUserByUsername(id)
+    usersAndAnimal.findUserByUsername(id)
     .then(user=>{
         res.status(200).json(user)
     })
@@ -58,7 +58,7 @@ router.post("/users/register",(req, res)=>{
         const hash = bcrypt.hashSync(credentials.password,12) // här krypterars lösenordet!! 
         credentials.password = hash;
        
-        Travels.addUser(credentials)
+        usersAndAnimal.addUser(credentials)
         .then(user=>{
             res.status(200).json(user)
         })
@@ -73,7 +73,7 @@ router.delete("/users/:id", (req,res)=>{ //primary key (som är id)när man tar 
     //const id = req.params.id // vi hämtar info från en url
     // DESTRUCTURING NEDAN 
     const {id} = req.params
-    Travels.removeUser(id) //skickar tillbaka en siffra 1 om det funkade -1 om det inte funkade
+    usersAndAnimal.removeUser(id) //skickar tillbaka en siffra 1 om det funkade -1 om det inte funkade
     .then(count=>{  // här skriver vi ett meddelande att id finns
         if(count>0){ 
             res.status(200).json({message:"User is deleted"})
@@ -96,7 +96,7 @@ router.post("/users/login", (req,res)=>{  // vi måste jämföra vårar eget lö
     // DESTRUCTURING nedan 
     const {username,password} = req.body // såhär gör man. det skapar två variblar och får dom/hämtar från req.body 
     
-    Travels.findUserByUsername(username,password)
+    usersAndAnimal.findUserByUsername(username,password)
     .then(user=>{
         if(user && bcrypt.compareSync(password, user.password)){//Här är password från front end och user.password från back end
             res.status(200).json(user)

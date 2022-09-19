@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const Travels = require("../dbHelpers")
+const usersAndAnimal = require("../dbHelpers")
 
 
 //----------------GET ALL ANIMALS ---------------//
 
 router.get('/animal', (req, res)=>{
-       Travels.getAllAnimal() 
+    usersAndAnimal.getAllAnimal() 
         .then(animal=>{ // kan heta vad som helst
             res.status(200).json(animal) //det du lägger i (users) skickas till frontend 
         })
@@ -20,7 +20,7 @@ router.post('/users/:id/animal',(req,res)=>{  //connecta till user router, och s
     const newAnimals = req.body
     newAnimals["user_id"] = id; // för att veta att det är user_id. kolla i schemat över databser i migrations. För att länka samman databaserna
  
-    Travels.findUserbyId(id)
+    usersAndAnimal.findUserbyId(id)
     .then(user=>{
         if(!user){
             res.status(404).json({message:"user does not exist"})
@@ -28,7 +28,7 @@ router.post('/users/:id/animal',(req,res)=>{  //connecta till user router, och s
             if(!newAnimals.title || !newAnimals.description){
             res.status(400).json({message: "All fiels must be complete"})
             }else{
-                Travels.addAnimal(newAnimals)
+                usersAndAnimal.addAnimal(newAnimals)
                 .then(animal=>{
                 res.status(200).json(animal)
                 })
