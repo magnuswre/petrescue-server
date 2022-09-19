@@ -1,3 +1,4 @@
+//routes BACKEND 6 ca 28:00
 const express = require("express");
 const router = express.Router();
 const usersAndAnimal = require("../dbHelpers")

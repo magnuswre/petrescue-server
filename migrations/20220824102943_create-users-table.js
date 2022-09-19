@@ -12,7 +12,7 @@ exports.up = function(knex) {   // mer info (Migrate) BACKEND 4 35:15. OM DU ÄN
         tbl.timestamps(true, true) 
     })
     .createTable("animal", tbl=>{ 
-    tbl.increments()
+    tbl.increments()//integer, id kolumnen. skapar och sparar ett id i idkolumnen med en siffra
     tbl.text("title").notNullable().index()
     tbl.text("description").notNullable()
     tbl.text("imageUrl")  //.notNullable()

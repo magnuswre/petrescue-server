@@ -11,11 +11,11 @@ app.use(cors({origin:'*'}))
 
 // IMPORT ROUTERS 
 const usersRouter = require("./routes/user-routes")
-const animalRouter = require("./routes/animal")
+//const animalRouter = require("./routes/animal-routes")
 
 // ACTIVE (USE) ROUTES
 app.use("/", usersRouter)
-app.use("/", animalRouter)
+//app.use("/", animalRouter)
 //WELCOME PAGE
 app.get("/", (req, res)=>{ // endpoint med bara forward slash / är hemsidan. 
     res.status(200).json({message:"Welcome to the server"}) // med -> res <- så skickas det tillbaka till frontend
@@ -27,4 +27,18 @@ app.get("/", (req, res)=>{ // endpoint med bara forward slash / är hemsidan.
 
 app.listen(port, ()=>{
     console.log(`Server is running at port ${port}`)
+})
+
+const usersAndAnimal = require("./dbHelpers")
+
+
+//----------------GET ALL ANIMALS ---------------//
+
+router.get('/animal', (req, res)=>{
+    usersAndAnimal.getAllAnimal() 
+        .then(animal=>{ // kan heta vad som helst
+            res.status(200).json(animal) //det du lägger i (users) skickas till frontend 
+        })
+        .catch(error=>res.status(500).json(error))
+    
 })
