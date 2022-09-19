@@ -28,9 +28,34 @@ function removeUser(id){
 
 }
 
+//---- GET ANIMAL-----//
+
+function getAllAnimal(){
+    return db("animal")
+}
+
+//------
+
+function findUserbyId(id){
+    return db('users').where({id:id}).first()
+}
+
+//----
+
+async function addAnimal(newAnimal){
+    await db('animal')
+    .where({user_id:newAnimal.user.id})
+    .insert(newAnimal)
+}
+
+
 module.exports = { //exporterar alla funktioner i denna fil som listas här. till index.js
     getAllUsers,
     addUser,
     findUserByUsername,
-    removeUser  
+    removeUser,
+    getAllAnimal,
+    findUserbyId,
+    addAnimal
+
 }

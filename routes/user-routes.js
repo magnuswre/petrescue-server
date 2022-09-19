@@ -106,4 +106,6 @@ router.post("/users/login", (req,res)=>{  // vi måste jämföra vårar eget lö
         })
         .catch(error=>res.status(500).json(error))
 })
+
+
 module.exports = router;

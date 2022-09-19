@@ -14,9 +14,11 @@ app.use(cors({origin:'*'}))
 
 // IMPORT ROUTERS 
 const usersRouter = require("./routes/user-routes")
+const animalRouter = require("./routes/animals")
+
 // ACTIVE (USE) ROUTES
 app.use("/", usersRouter)
-
+app.use("/", animalRouter)
 //WELCOME PAGE
 app.get("/", (req, res)=>{ // endpoint med bara forward slash / är hemsidan. 
     res.status(200).json({message:"Welcome to the server"}) // med -> res <- så skickas det tillbaka till frontend
