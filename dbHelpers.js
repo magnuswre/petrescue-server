@@ -29,21 +29,23 @@ function removeUser(id){
 
 }
 
-//---- GET ANIMAL-----//
-
-function getAllAnimal(){
-    return db("animal")
-}
-
 //------
 
 function findUserbyId(id){
     return db('users').where({id:id}).first()
 }
 
+
+//---- GET ANIMAL-----//
+
+function getAllAnimal(){
+    return db("animal")
+}
+
+
 //----
 
-async function addAnimal(newAnimal){
+async function addAnimal(newAnimal, user_id){
     await db('animal')
     .where({user_id:newAnimal.user_id})
     .insert(newAnimal)
