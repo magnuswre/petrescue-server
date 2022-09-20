@@ -1,13 +1,13 @@
 //routes BACKEND 6 ca 28:00
 const express = require("express");
 const router = express.Router();
-const usersAndAnimal = require("../dbHelpers")
+const animalInfo = require("../dbHelpers")
 
 
 //----------------GET ALL ANIMALS ---------------//
 
 router.get('/animal', (req, res)=>{
-    usersAndAnimal.getAllAnimal() 
+    animalInfo.getAllAnimal() 
         .then(animal=>{ // kan heta vad som helst
             res.status(200).json(animal) //det du lägger i (users) skickas till frontend 
         })
@@ -16,7 +16,7 @@ router.get('/animal', (req, res)=>{
 })
 
 // ------------------CREATE INFO----------------------------/
-//  ------- Om vi vill få information från användaren skapar vi en route/endpoint/url. I detta fall /users/register. 
+//  ------- Om vi vill få information från användaren skapar vi en route/endpoint/url. I detta fall /users/animal. 
 // Det kan heta vad som helst men ska passa med syftet. I detta fall skapa/registerar en användare 
 router.post("/users/animal",(req, res)=>{
     const credentials = req.body; //stores vad som kommer från req.body. credentials = autentiseringsuppgifter/referenser
@@ -29,7 +29,7 @@ router.post("/users/animal",(req, res)=>{
     // const hash = bcrypt.hashSync(credentials.password,12) // här krypterars lösenordet!! 
     // credentials.password = hash;
    
-    usersAndAnimal.addUser(credentials)
+    animalInfo.addUser(credentials)
     .then(user=>{
         res.status(200).json(user)
     })
