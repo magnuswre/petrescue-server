@@ -15,10 +15,14 @@ router.get('/animals', (req, res)=>{
     
 })
 
+
+
+
+
 // // ------------------CREATE INFO----------------------------/
 // //  ------- Om vi vill få information från användaren skapar vi en route/endpoint/url. I detta fall /users/animal. 
 // // Det kan heta vad som helst men ska passa med syftet. I detta fall skapa/registerar en användare 
-// router.post("/users/animal",(req, res)=>{
+// router.post("/animals",(req, res)=>{
 //     const credentials = req.body; //stores vad som kommer från req.body. credentials = autentiseringsuppgifter/referenser
     
 //     // if(!(credentials.username && credentials.password)){//if they dont exist !. båda måste existera. annars kommer 400 
