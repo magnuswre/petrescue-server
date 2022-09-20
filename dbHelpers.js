@@ -62,3 +62,4 @@ module.exports = { //exporterar alla funktioner i denna fil som listas här. til
     addAnimal
 
 }
+
