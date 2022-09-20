@@ -15,41 +15,42 @@ async function addUser(user){ //Här skapas en ny user
    //return db("users").where({username:user.username})   //refererar till en specefik user i databasen. username är unikt                                 
     
    return await db('users').insert(user,['id', 'username']) // Den här koden "ersätter" de två raderna ovan detta. Detta är för postgresql vill ha informationen    
-
 }
 
 function findUserByUsername(username){
     return db("users").where({username:username}).first();
-
 }
 
 function removeUser(id){
     return db("users").where({id:id}).del() //vi tittar i users tabellen, hittar id:t till id som ska bort, sen tar bort det med del()
-
-
 }
 
-//------
+// //------
 
-function findUserbyId(id){
-    return db('users').where({id:id}).first()
-}
-
+// function findUserbyId(id){
+//     return db('users').where({id:id}).first()
+// }
 
 //---- GET ANIMAL-----//
 
-function getAllAnimal(){
-    return db("animal")
+function getAllAnimals(){
+    return db("animals")
 }
 
 
-//----
 
-async function addAnimal(newAnimal, user_id){
-    await db('animal')
-    .where({user_id:newAnimal.user_id})
-    .insert(newAnimal)
-}
+
+// async function addAnimal(newAnimal, user_id){
+//     await db('animal')
+//     .where({user_id:newAnimal.user_id})
+//     .insert(newAnimal)
+// }
+
+// //---- GET TEST-----//
+
+// function getAlltests(){
+//     return db("test")
+// }
 
 
 module.exports = { //exporterar alla funktioner i denna fil som listas här. till index.js
@@ -57,9 +58,9 @@ module.exports = { //exporterar alla funktioner i denna fil som listas här. til
     addUser,
     findUserByUsername,
     removeUser,
-    getAllAnimal,
-    findUserbyId,
-    addAnimal
+    getAllAnimals,
+    // findUserbyId,
+    // addAnimal
 
 }
 

@@ -12,6 +12,7 @@ app.use(cors({origin:'*'}))
 // IMPORT ROUTERS 
 const usersRouter = require("./routes/user-routes")
 const animalRouter = require("./routes/animal-routes")
+// const Router = require("./routes/animal-routes")
 
 // ACTIVE (USE) ROUTES
 app.use("/", usersRouter)
