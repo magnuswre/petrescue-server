@@ -1,13 +1,13 @@
 //routes BACKEND 6 ca 28:00
 const express = require("express");
 const router = express.Router();
-const usersAndAnimal = require("../dbHelpers")
+const allUsers = require("../dbHelpers")
 const bcrypt = require("bcryptjs") //vi laddar ner och använder ett hashing-bibliotek som kallas bcrypt.
 
 
 // --------------- GET ALL USERS---------------------------//
 router.get("/users",(req, res)=>{ 
-    usersAndAnimal.getAllUsers() 
+    allUsers.getAllUsers() 
     .then(users=>{ //users kan heta vad som helst
         res.status(200).json(users) //det du lägger i (users) skickas till frontend 
     })
@@ -20,7 +20,7 @@ router.get("/users/:username", (req,res)=>{ // kolla colon.//informationen finns
     const {username} = req.params // samma som ovan. men mer professionellt. Om något är stored/förvaras i ett objekt.
                                   // tänk baklänges man går till objektet sedan sparar man det genom att skapa en varibeln i {NN} som sedan används      
 
-    usersAndAnimal.findUserByUsername(username)
+    allUsers.findUserByUsername(username)
     .then(user=>{
         res.status(200).json(user)
     })
@@ -36,7 +36,7 @@ router.get("/users/:id", (req,res)=>{ // kolla colon.//informationen finns i url
     const {id} = req.params // samma som ovan. men mer professionellt. Om något är stored/förvaras i ett objekt.
                                   // tänk baklänges man går till objektet sedan sparar man det genom att skapa en varibeln i {NN} som sedan används      
 
-    usersAndAnimal.findUserByUsername(id)
+    allUsers.findUserByUsername(id)
     .then(user=>{
         res.status(200).json(user)
     })
@@ -59,7 +59,7 @@ router.post("/users/register",(req, res)=>{
         const hash = bcrypt.hashSync(credentials.password,12) // här krypterars lösenordet!! 
         credentials.password = hash;
        
-        usersAndAnimal.addUser(credentials)
+        allUsers.addUser(credentials)
         .then(user=>{
             res.status(200).json(user)
         })
@@ -74,7 +74,7 @@ router.delete("/users/:id", (req,res)=>{ //primary key (som är id)när man tar 
     //const id = req.params.id // vi hämtar info från en url
     // DESTRUCTURING NEDAN 
     const {id} = req.params
-    usersAndAnimal.removeUser(id) //skickar tillbaka en siffra 1 om det funkade -1 om det inte funkade
+    allUsers.removeUser(id) //skickar tillbaka en siffra 1 om det funkade -1 om det inte funkade
     .then(count=>{  // här skriver vi ett meddelande att id finns
         if(count>0){ 
             res.status(200).json({message:"User is deleted"})
