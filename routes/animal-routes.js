@@ -15,31 +15,22 @@ router.get('/animals', (req, res)=>{
     
 })
 
-
-
-
-
-// // ------------------CREATE INFO----------------------------/
-// //  ------- Om vi vill få information från användaren skapar vi en route/endpoint/url. I detta fall /users/animal. 
-// // Det kan heta vad som helst men ska passa med syftet. I detta fall skapa/registerar en användare 
-// router.post("/animals",(req, res)=>{
-//     const credentials = req.body; //stores vad som kommer från req.body. credentials = autentiseringsuppgifter/referenser
+// ------------------CREATE ANIMAL INFO----------------------------/
+//  ------- Om vi vill få information från användaren skapar vi en route/endpoint/url. I detta fall /users/animal. 
+// Det kan heta vad som helst men ska passa med syftet. I detta fall skapa/registerar ett djur.  
+router.post("/animals",(req, res)=>{
     
-//     // if(!(credentials.username && credentials.password)){//if they dont exist !. båda måste existera. annars kommer 400 
-//     //     return res.status(400).json({message:"username and password required"})
-//     //         // om det inte uppfylls så stannar koden här. 
-//     // }
+    const credentials = req.body; //innehåller vad som kommer från req.body. credentials = autentiseringsuppgifter/referenser
+     
+    animalInfo.addAnimal(credentials)
+    .then(animal=>{
+        res.status(200).json(animal)
+    })
+    .catch(error=>res.status(500).json(error))
 
-//     // const hash = bcrypt.hashSync(credentials.password,12) // här krypterars lösenordet!! 
-//     // credentials.password = hash;
-   
-//     animalInfo.addUser(credentials)
-//     .then(user=>{
-//         res.status(200).json(user)
-//     })
-//     .catch(error=>res.status(500).json(error))
+})
 
-// })
+module.exports = router;
 
 
 // //-----------------------------------------//
@@ -68,4 +59,3 @@ router.get('/animals', (req, res)=>{
 // //     .catch(error=>res.status(500).json(error))
 
 // })   
-module.exports = router;

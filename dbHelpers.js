@@ -11,7 +11,7 @@ function getAllUsers(){
 }
 
 async function addUser(user){ //Här skapas en ny user
-    //await db("users").insert(user) //insert är insert new data. Await väntar. async. jobbar ihop. Är vikigt när man skapar//något nytt ska den vänta på andra funktioner  
+    //await db("users").insert(user) //insert = insert new data. Await väntar. Async jobbar ihop. Vikigt när skapa//nåt nytt. Väntar på andra funktioner  
    //return db("users").where({username:user.username})   //refererar till en specefik user i databasen. username är unikt                                 
     
    return await db('users').insert(user,['id', 'username']) // Den här koden "ersätter" de två raderna ovan detta. Detta är för postgresql vill ha informationen    
@@ -37,7 +37,10 @@ function getAllAnimals(){
     return db("animals")
 }
 
+async function addAnimal(animal){
 
+    return await db('animals').insert(animal,['id', 'title']) //  Detta är för postgresql vill ha informationen    
+}
 
 
 // async function addAnimal(newAnimal, user_id){
@@ -59,6 +62,7 @@ module.exports = { //exporterar alla funktioner i denna fil som listas här. til
     findUserByUsername,
     removeUser,
     getAllAnimals,
+    addAnimal
     // findUserbyId,
     // addAnimal
 
