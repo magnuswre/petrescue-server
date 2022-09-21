@@ -18,11 +18,12 @@ router.get('/animals', (req, res)=>{
 // ------------------CREATE ANIMAL INFO----------------------------/
 //  ------- Om vi vill få information från användaren skapar vi en route/endpoint/url. I detta fall /users/animal. 
 // Det kan heta vad som helst men ska passa med syftet. I detta fall skapa/registerar ett djur.  
-router.post("/animals",(req, res)=>{
+
     
-    const credentials = req.body; //innehåller vad som kommer från req.body. credentials = autentiseringsuppgifter/referenser
+//     const credentials = req.body; //innehåller vad som kommer från req.body. credentials = autentiseringsuppgifter/referenser
      
-    animalInfo.addAnimal(credentials)
+router.post("/animal",(req, res)=>{
+    animalInfo.addAnimal(req.body)
     .then(animal=>{
         res.status(200).json(animal)
     })
