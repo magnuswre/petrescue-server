@@ -25,21 +25,25 @@ function removeUser(id){
     return db("users").where({id:id}).del() //vi tittar i users tabellen, hittar id:t till id som ska bort, sen tar bort det med del()
 }
 
-// //------
 
 // function findUserbyId(id){
 //     return db('users').where({id:id}).first()
 // }
 
-//---- GET ANIMAL-----//
+//------- GET ANIMAL----------//
 
 function getAllAnimals(){
     return db("animals")
 }
 
+//---------ADD ANIMAL--------//
+
 async function addAnimal(animal){
-    return await db('animals').insert(animal,['id', 'title']) //  Detta är för postgresql vill ha informationen    
+    return await db('animals').insert(animal,['id', 'title']) //  Detta är för postgresql vill ha informationen   
+    
 }
+
+//-------GET ANIMAL BY TITLE-----------//
 
 function findAnimalByTitle(animal){
     return db("animals").where({animal:animal}).first();

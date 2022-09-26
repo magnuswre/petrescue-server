@@ -24,8 +24,8 @@ router.get("/animals/:title", (req,res)=>{ // kolla colon.//informationen finns 
                                   // tänk baklänges man går till objektet sedan sparar man det genom att skapa en varibeln i {NN} som sedan används      
 
      animalInfo.findAnimalByTitle(title)
-    .then(animal=>{
-        res.status(200).json(animal)
+    .then(animals=>{
+        res.status(200).json(animals)
     })
     .catch(error=>res.status(500).json(error)) 
 
@@ -39,6 +39,8 @@ router.get("/animals/:title", (req,res)=>{ // kolla colon.//informationen finns 
 
     router.post("/animal",(req, res)=>{
     animalInfo.addAnimal(req.body)
+
+
     .then(animal=>{
         res.status(200).json(animal)
     })
