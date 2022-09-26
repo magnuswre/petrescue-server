@@ -15,6 +15,24 @@ router.get('/animals', (req, res)=>{
     
 })
 
+// ------GET ANIMAL BY TITLE-----//
+
+router.get("/animals/:title", (req,res)=>{ // kolla colon.//informationen finns i url. som är :username där finns förvarade
+    
+    //const username = req.params.username // kolla params! {destructuring}
+    const {title} = req.params // samma som ovan. men mer professionellt. Om något är stored/förvaras i ett objekt.
+                                  // tänk baklänges man går till objektet sedan sparar man det genom att skapa en varibeln i {NN} som sedan används      
+
+     animalInfo.findAnimalByTitle(title)
+    .then(animal=>{
+        res.status(200).json(animal)
+    })
+    .catch(error=>res.status(500).json(error)) 
+
+
+}) 
+
+
 // ------------------CREATE ANIMAL INFO----------------------------/
 //  ------- Om vi vill få information från användaren skapar vi en route/endpoint/url. I detta fall /users/animal. 
 // Det kan heta vad som helst men ska passa med syftet. I detta fall skapa/registerar ett djur.  

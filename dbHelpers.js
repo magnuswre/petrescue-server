@@ -38,10 +38,13 @@ function getAllAnimals(){
 }
 
 async function addAnimal(animal){
-
     return await db('animals').insert(animal,['id', 'title']) //  Detta är för postgresql vill ha informationen    
 }
 
+function findAnimalByTitle(animal){
+    return db("animals").where({animal:animal}).first();
+
+}
 
 // async function addAnimal(newAnimal, user_id){
 //     await db('animal')
@@ -62,7 +65,9 @@ module.exports = { //exporterar alla funktioner i denna fil som listas här. til
     findUserByUsername,
     removeUser,
     getAllAnimals,
-    addAnimal
+    addAnimal,
+    findAnimalByTitle
+
     // findUserbyId,
     // addAnimal
 
